@@ -1,0 +1,23 @@
+import /init.connectivity.bcm43xx.rc
+import /init.connectivity.hi110x.rc
+on early-init
+
+on init
+
+on early-fs
+
+on fs
+
+on post-fs
+
+on post-fs-data
+
+on early-boot
+
+on boot
+
+service macaddr /system/bin/mac_addr_normalization
+    class core
+    user root
+    group root bluetooth net_bt_stack wifi
+    oneshot
