@@ -47,6 +47,6 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/sbin/hw_ueventd:root/sbin/hw_ueventd \
 	$(LOCAL_PATH)/sbin/kmsgcat:root/sbin/kmsgcat \
 	$(LOCAL_PATH)/sbin/logctl_service:root/sbin/logctl_service \
-	$(LOCAL_PATH)/sbin/ntfs_3gd:root/sbin/ntfs_3gd \
+	$(LOCAL_PATH)/sbin/ntfs-3gd:root/sbin/ntfs-3gd \
 	$(LOCAL_PATH)/sbin/oeminfo_nvm_server:root/sbin/oeminfo_nvm_server \
 	$(LOCAL_PATH)/sbin/teecd:root/sbin/teecd
