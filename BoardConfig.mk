@@ -88,7 +88,13 @@ BOARD_KERNEL_CMDLINE := hisi_dma_print=0 vmalloc=384M maxcpus=8 coherent_pool=51
 BOARD_KERNEL_BASE := 0x07478000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x07b88000 --tags_offset 0x02988000
-TARGET_PREBUILT_KERNEL := device/huawei/cherry/kernel
+#TARGET_PREBUILT_KERNEL := device/huawei/cherry/kernel
+TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_KERNEL_SOURCE := kernel
+TARGET_KERNEL_CONFIG := cyanogenmod_hi6210sft_defconfig
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+TARGET_KERNEL_ARCH := arm64
+BOARD_KERNEL_IMAGE_NAME := Image
 
 # Partition Sizes
 BOARD_BOOTIMAGE_PARTITION_SIZE := 25165824

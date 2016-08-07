@@ -18,6 +18,9 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
+# Inherit some common CM stuff
+$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+
 # Inherit Languages Support
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
@@ -40,8 +43,13 @@ PRODUCT_COPY_FILES :=  \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/kernel:kernel
 
-# Overlays
-DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
+# Overlays (Disable overlays for now)
+#DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
+
+# DPI Selection
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := 320dpi
+PRODUCT_AAPT_PREBUILT_DPI := xhdpi hdpi
 
 # Ramdisk + Selinux Configurations
 $(call inherit-product, $(LOCAL_PATH)/ramdisk/ramdisk_cherry.mk)

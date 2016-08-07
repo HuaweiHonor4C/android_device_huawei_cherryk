@@ -41,4 +41,12 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/ramdisk/property_contexts:root/property_contexts \
 	$(LOCAL_PATH)/ramdisk/service_contexts:root/service_contexts \
 	$(LOCAL_PATH)/ramdisk/ueventd.10107.rc:root/ueventd.10107.rc \
-	$(LOCAL_PATH)/ramdisk/ueventd.51055.rc:root/ueventd.51055.rc
+	$(LOCAL_PATH)/ramdisk/ueventd.51055.rc:root/ueventd.51055. \
+	$(LOCAL_PATH)/ramdisk/sbin/check_root:root/sbin/check_root \
+	$(LOCAL_PATH)/ramdisk/sbin/hdbd:root/sbin/hdbd \
+	$(LOCAL_PATH)/ramdisk/sbin/hw_ueventd:root/sbin/hw_ueventd \
+	$(LOCAL_PATH)/ramdisk/sbin/kmsgcat:root/sbin/kmsgcat \
+	$(LOCAL_PATH)/ramdisk/sbin/logctl_service:root/sbin/logctl_service \
+	$(LOCAL_PATH)/ramdisk/sbin/ntfs_3gd:root/sbin/ntfs_3gd \
+	$(LOCAL_PATH)/ramdisk/sbin/oeminfo_nvm_server:root/sbin/oeminfo_nvm_server \
+	$(LOCAL_PATH)/ramdisk/sbin/teecd:root/sbin/teecd
