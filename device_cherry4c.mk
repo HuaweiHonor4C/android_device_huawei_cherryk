@@ -166,23 +166,23 @@ PRODUCT_COPY_FILES += \
 #     ro.telephony.ril_class=HuaweiRIL
 
 # Extra Packages
-PRODUCT_PACKAGES += \
-     audio.primary.default \
-     audio_policy.stub \
-     audio.a2dp.default \
-     audio.usb.default \
-     audio.r_submix.default \
-     libaudioutils \
-     libtinyalsa \
-     tinyplay \
-     tinycap \
-     tinymix \
-     tinypcminfo \
-     sound_trigger.primary.hi6210sft \
-     libion.huawei \
-     libwpa_client \
-     wpa_supplicant \
-     wpa_supplicant-conf
+#PRODUCT_PACKAGES += \
+#     audio.primary.default \
+#     audio_policy.stub \
+#     audio.a2dp.default \
+#     audio.usb.default \
+#     audio.r_submix.default \
+#     libaudioutils \
+#     libtinyalsa \
+#     tinyplay \
+#     tinycap \
+#     tinymix \
+#     tinypcminfo \
+#     sound_trigger.primary.hi6210sft \
+#     libion.huawei \
+#     libwpa_client \
+#     wpa_supplicant \
+#     wpa_supplicant-conf
 
 # Shim Libraries (will be added after fixed boot)
 #PRODUCT_PACKAGES += \
@@ -210,26 +210,26 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
 
 # Bluetooth Configurations
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/bluetooth/auto_pair_devlist.conf:system/etc/bluetooth/auto_pair_devlist.conf \
-	$(LOCAL_PATH)/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
-	$(LOCAL_PATH)/bluetooth/bt_stack_beta.conf:system/etc/bluetooth/bt_stack_beta.conf \
-	$(LOCAL_PATH)/bluetooth/bt_stack_log.conf:system/etc/bluetooth/bt_stack_log.conf \
-	$(LOCAL_PATH)/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
-	$(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+#PRODUCT_COPY_FILES += \
+#	$(LOCAL_PATH)/bluetooth/auto_pair_devlist.conf:system/etc/bluetooth/auto_pair_devlist.conf \
+#	$(LOCAL_PATH)/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
+#	$(LOCAL_PATH)/bluetooth/bt_stack_beta.conf:system/etc/bluetooth/bt_stack_beta.conf \
+#	$(LOCAL_PATH)/bluetooth/bt_stack_log.conf:system/etc/bluetooth/bt_stack_log.conf \
+#	$(LOCAL_PATH)/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
+#	$(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 # WiFi Configurations
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/wifi/hostapd_hisi.conf:system/etc/wifi/hostapd_hisi.conf \
-	$(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-	$(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-	$(LOCAL_PATH)/wifi/wpa_supplicant_hisi.conf:system/etc/wifi/wpa_supplicant_hisi.conf \
-	$(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wpa_supplicant.conf
-
+#PRODUCT_COPY_FILES += \
+#	$(LOCAL_PATH)/wifi/hostapd_hisi.conf:system/etc/wifi/hostapd_hisi.conf \
+#	$(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+#	$(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+#	$(LOCAL_PATH)/wifi/wpa_supplicant_hisi.conf:system/etc/wifi/wpa_supplicant_hisi.conf \
+#	$(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wpa_supplicant.conf
+#
 # GPS Configurations
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
-	$(LOCAL_PATH)/gps/gpsconfig.xml:system/etc/gpsconfig.xml
+#PRODUCT_COPY_FILES += \
+#	$(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
+#	$(LOCAL_PATH)/gps/gpsconfig.xml:system/etc/gpsconfig.xml
 
 # Thermal Configurations (These will be added later)
 

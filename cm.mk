@@ -22,9 +22,9 @@ $(call inherit-product, device/huawei/cherry4c/device_cherry4c.mk)
 
 # Apps
 PRODUCT_PACKAGES += \
-	Launcher3 \
-	FMRadio \
-	CarrierConfig
+	Launcher3
+#	FMRadio \
+#	CarrierConfig
 
 # Device Identifiers
 PRODUCT_DEVICE := cherry4c
