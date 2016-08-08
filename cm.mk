@@ -15,10 +15,10 @@
 #
 
 # Release Name
-PRODUCT_RELEASE_NAME := cherry
+PRODUCT_RELEASE_NAME := cherry4c
 
 # Inherit Device Configuration
-$(call inherit-product, device/huawei/cherry/device_cherry.mk)
+$(call inherit-product, device/huawei/cherry4c/device_cherry4c.mk)
 
 # Apps
 PRODUCT_PACKAGES += \
@@ -27,8 +27,8 @@ PRODUCT_PACKAGES += \
 	CarrierConfig
 
 # Device Identifiers
-PRODUCT_DEVICE := cherry
-PRODUCT_NAME := aosp_cherry
+PRODUCT_DEVICE := cherry4c
+PRODUCT_NAME := cm_cherry4c
 PRODUCT_BRAND := Android
 PRODUCT_MODEL := Honor 4X/4C Kirin
 PRODUCT_MANUFACTURER := Huawei

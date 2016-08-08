@@ -15,4 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/aosp_cherry.mk
+    $(LOCAL_DIR)/cm.mk
