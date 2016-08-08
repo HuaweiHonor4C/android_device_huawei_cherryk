@@ -161,9 +161,9 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml
 
 # RIL
-PRODUCT_PROPERTY_OVERRIDES += \
-     audioril.lib=libhuawei-audio-ril.so \
-     ro.telephony.ril_class=HuaweiRIL
+#PRODUCT_PROPERTY_OVERRIDES += \
+#     audioril.lib=libhuawei-audio-ril.so \
+#     ro.telephony.ril_class=HuaweiRIL
 
 # Extra Packages
 PRODUCT_PACKAGES += \
