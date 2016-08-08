@@ -30,7 +30,7 @@ $(call inherit-product-if-exists, vendor/huawei/cherry/vendor_cherry.mk)
 # Operator Name Database (for automatic recognition of network and APN)
 PRODUCT_COPY_FILES :=  \
 	$(LOCAL_PATH)/global/voicemail-conf.xml:system/etc/voicemail-conf.xml \
-	$(LOCAL_PATH)/global/virtualNets-conf-nolte:system/etc/virtualNets-conf.xml \
+	$(LOCAL_PATH)/global/virtualNets-conf-nolte.xml:system/etc/virtualNets-conf.xml \
 	$(LOCAL_PATH)/global/apns-conf.xml:system/etc/apns-conf.xml \
 	$(LOCAL_PATH)/global/globalAutoAdapt-conf.xml:system/etc/globalAutoAdapt-conf.xml \
 	$(LOCAL_PATH)/global/globalMatchs-conf.xml:system/etc/globalMatchs-conf.xml \
@@ -216,7 +216,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/bluetooth/bt_stack_beta.conf:system/etc/bluetooth/bt_stack_beta.conf \
 	$(LOCAL_PATH)/bluetooth/bt_stack_log.conf:system/etc/bluetooth/bt_stack_log.conf \
 	$(LOCAL_PATH)/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
-	$(LOCAL_PATH)/bluetoth/bt_vendor.conf:system/etc/bt_vendor.conf \
+	$(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 # WiFi Configurations
 PRODUCT_COPY_FILES += \
