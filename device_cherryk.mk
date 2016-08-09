@@ -72,14 +72,13 @@ PRODUCT_PACKAGES += libGLES_android
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.secure=0 \
 	ro.adb.secure=0 \
-	ro.allow.mock.location=1 \
+	ro.allow.mock.location=0 \
 	ro.debuggable=1 \
 	ro.magic.api.version=0.1 \
 	persist.sys.usb.config=adb \
 	ro.opengles.version=131072 \
 	ro.sf.lcd_density=320 \
-	hw.lcd.lcd_density=320 \
-	persist.sys.use_dithering=2
+	hw.lcd.lcd_density=320
 
 # Extended OpenGL Renderer Configurations
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -95,6 +94,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.hwui.text_small_cache_height=1024 \
 	ro.hwui.text_small_cache_width=1024 \
 	ro.hwui.r_buffer_cache_size=8
+
+# Force disable Strict Mode (red flashing screen borders)
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.sys.strictmode.visual=0 \
+	persist.sys.strictmode.disable=1
 
 # Dalvik Flags
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
@@ -119,10 +123,8 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
 	frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
 	frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
-	frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
 	frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
 	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-	frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
 	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
 	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
 	frameworks/native/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
@@ -135,10 +137,6 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
 	frameworks/native/data/etc/android.software.webview.xml:system/etc/permissions/android.software.webview.xml \
 	frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml
-
-# Copy Preloaded Classes (temporary)
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/preloaded-classes:system/etc/preloaded-classes
 
 # RIL
 #PRODUCT_PROPERTY_OVERRIDES += \
@@ -184,10 +182,10 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/phone.prop:system/phone.prop
 #	$(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf
 
 # Media Profiles (Patched)
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml \
-	$(LOCAL_PATH)/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
-	$(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
+#PRODUCT_COPY_FILES += \
+#	$(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml \
+#	$(LOCAL_PATH)/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+#	$(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
 
 # Bluetooth Configurations
 #PRODUCT_COPY_FILES += \
