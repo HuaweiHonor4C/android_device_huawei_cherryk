@@ -15,10 +15,10 @@
 #
 
 # Release Name
-PRODUCT_RELEASE_NAME := cherry4c
+PRODUCT_RELEASE_NAME := cherryk
 
 # Inherit Device Configuration
-$(call inherit-product, device/huawei/cherry4c/device_cherry4c.mk)
+$(call inherit-product, device/huawei/cherryk/device_cherryk.mk)
 
 # Apps
 PRODUCT_PACKAGES += \
@@ -27,8 +27,11 @@ PRODUCT_PACKAGES += \
 #	CarrierConfig
 
 # Device Identifiers
-PRODUCT_DEVICE := cherry4c
-PRODUCT_NAME := cm_cherry4c
+PRODUCT_DEVICE := cherryk
+PRODUCT_NAME := cm_cherryk
 PRODUCT_BRAND := Android
 PRODUCT_MODEL := Honor 4X/4C Kirin
 PRODUCT_MANUFACTURER := Huawei
+
+# Inherit Vendor configurations
+$(call inherit-product, vendor/huawei/cherryk/vendor_cherryk.mk)

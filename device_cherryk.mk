@@ -17,15 +17,13 @@
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
 # Inherit some common CM stuff
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit Languages Support
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-
-# Inherit Vendor configurations
-$(call inherit-product-if-exists, vendor/huawei/cherry/vendor_cherry.mk)
 
 # Operator Name Database (for automatic recognition of network and APN)
 PRODUCT_COPY_FILES :=  \
@@ -47,12 +45,12 @@ PRODUCT_COPY_FILES += \
 #DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 
 # DPI Selection
-PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := 320dpi
+PRODUCT_AAPT_CONFIG := xhdpi hdpi normal
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
 PRODUCT_AAPT_PREBUILT_DPI := xhdpi hdpi
 
 # Ramdisk + Selinux Configurations
-$(call inherit-product, $(LOCAL_PATH)/ramdisk/ramdisk_cherry.mk)
+$(call inherit-product, $(LOCAL_PATH)/ramdisk/ramdisk_cherryk.mk)
 
 # Add openssh support for remote debugging and job submission
 PRODUCT_PACKAGES += ssh sftp scp sshd ssh-keygen sshd_config start-ssh uim wpa_supplicant
@@ -87,18 +85,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.adb.secure=0 \
 	ro.allow.mock.location=1 \
 	ro.debuggable=1 \
-	dalvik.vm.image-dex2oat-Xms=64m \
-	dalvik.vm.image-dex2oat-Xmx=64m \
-	dalvik.vm.dex2oat-Xms=64m \
-	dalvik.vm.dex2oat-Xmx=512m \
-	ro.dalvik.vm.native.bridge=0 \
 	ro.magic.api.version=0.1 \
 	persist.sys.usb.config=adb \
 	ro.opengles.version=131072 \
-	dalvik.vm.heapsize=512 \
 	ro.sf.lcd_density=320 \
-	ro.sys.umsdirtyratio=2 \
-	ro.bt.bdaddr_path=/data/misc/bluedroid/macbt
+	hw.lcd.lcd_density=320 \
+	persist.sys.use_dithering=2
 
 # Extended OpenGL Renderer Configurations
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -115,13 +107,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.hwui.text_small_cache_width=1024 \
 	ro.hwui.r_buffer_cache_size=8
 
-# Extended Dalvik VM heap sizes
-PRODUCT_PROPERTY_OVERRIDES += \
-	dalvik.vm.heaptargetutilization=0.75 \
-	dalvik.vm.heapmaxfree=8m \
-	dalvik.vm.heapgrowthlimit=192m \
-	dalvik.vm.heapminfree=2m \
-	dalvik.vm.heapstartsize=8m
+# Dalvik Flags
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Off charging mode
 PRODUCT_PACKAGES += \
@@ -159,6 +146,10 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
 	frameworks/native/data/etc/android.software.webview.xml:system/etc/permissions/android.software.webview.xml \
 	frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml
+
+# Copy Preloaded Classes (temporary)
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/preloaded-classes:system/etc/preloaded-classes
 
 # RIL
 #PRODUCT_PROPERTY_OVERRIDES += \
@@ -199,9 +190,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/phone.prop:system/phone.prop
 
 # Audio Configurations
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/audio/audio_effects.conf:system/etc/audio_effects.conf \
-	$(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf
+#PRODUCT_COPY_FILES += \
+#	$(LOCAL_PATH)/audio/audio_effects.conf:system/etc/audio_effects.conf \
+#	$(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf
 
 # Media Profiles (Patched)
 PRODUCT_COPY_FILES += \

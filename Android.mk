@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-ifneq ($(filter cherry4c, $(TARGET_DEVICE)),)
+ifneq ($(filter cherryk, $(TARGET_DEVICE)),)
 
 LOCAL_PATH := $(call my-dir)
 
