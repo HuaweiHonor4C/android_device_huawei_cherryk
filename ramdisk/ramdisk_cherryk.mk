@@ -15,7 +15,6 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/init.connectivity.hi110x.rc:root/init.connectivity.hi110x.rc \
 	$(LOCAL_PATH)/init.connectivity.rc:root/init.connectivity.rc \
 	$(LOCAL_PATH)/init.device.rc:root/init.device.rc \
-	$(LOCAL_PATH)/init.environ.rc:root/init.environ.rc \
 	$(LOCAL_PATH)/init.extmodem.rc:root/init.extmodem.rc \
 	$(LOCAL_PATH)/init.hi6210sft.rc:root/init.hi6210sft.rc \
 	$(LOCAL_PATH)/init.hisi.rc:root/init.hisi.rc \
