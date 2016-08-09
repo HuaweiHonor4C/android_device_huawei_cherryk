@@ -1,1 +1,1 @@
-add_lunch_combo cm_cherry4c-eng
+add_lunch_combo cm_cherryk-eng

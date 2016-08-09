@@ -62,14 +62,14 @@ ARCH_ARM_HIGH_OPTIMIZATION := true
 #WIFI_BAND                        := 802_11_ABG
 #BOARD_HAVE_BLUETOOTH := true
 #BOARD_HAVE_BLUETOOTH_BCM := true
-#BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := "device/huawei/cherry4c/bluetooth"
-#BOARD_BLUEDROID_VENDOR_CONF := device/huawei/cherry4c/bluetooth/vnd_cherry.txt
+#BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := "device/huawei/cherryk/bluetooth"
+#BOARD_BLUEDROID_VENDOR_CONF := device/huawei/cherryk/bluetooth/vnd_cherry.txt
 
 # GPU and Open GL Rendering
 USE_OPENGL_RENDERER := true
 ANDROID_ENABLE_RENDERSCRIPT := true
 TARGET_HARDWARE_3D := true
-BOARD_EGL_CFG := device/huawei/cherry4c/egl.cfg
+BOARD_EGL_CFG := device/huawei/cherryk/egl.cfg
 TARGET_BOARD_GPU := mali-450mp
 
 # Arbitary Board Props
@@ -89,7 +89,7 @@ BOARD_KERNEL_CMDLINE := hisi_dma_print=0 vmalloc=384M maxcpus=8 coherent_pool=51
 BOARD_KERNEL_BASE := 0x07478000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x07b88000 --tags_offset 0x02988000
-#TARGET_PREBUILT_KERNEL := device/huawei/cherry4c/kernel
+#TARGET_PREBUILT_KERNEL := device/huawei/cherryk/kernel
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel
 TARGET_KERNEL_CONFIG := cyanogenmod_hi6210sft_defconfig
@@ -112,7 +112,7 @@ DEVICE_SCREEN_WIDTH := 720
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
 BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_RECOVERY_FSTAB := device/huawei/cherry4c/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/huawei/cherryk/recovery.fstab
 RECOVERY_FSTAB_VERSION := 2
 TARGET_USERIMAGES_USE_EXT4 := true
 
