@@ -95,7 +95,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.hwui.text_small_cache_width=1024 \
 	ro.hwui.r_buffer_cache_size=8
 
-# Force disable Strict Mode (red flashing screen borders)
+# Force disable Strict Mode
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.sys.strictmode.visual=0 \
 	persist.sys.strictmode.disable=1
@@ -162,6 +162,23 @@ PRODUCT_COPY_FILES += \
 #     wpa_supplicant \
 #     wpa_supplicant-conf
 
+# WiFi
+PRODUCT_PACKAGES += \
+	wpa_supplicant \
+	wpa_supplicant-conf \
+	libwpa_client
+
+# Include BCM4343 WLAN Modules
+$(call inherit-product, hardware/broadcom/wlan/bcmdhd/firmware/bcm4343/device-bcm.mk)
+
+# WiFi Configurations
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/wifi/hostapd_hisi.conf:system/etc/wifi/hostapd_hisi.conf \
+	$(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+	$(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
+	$(LOCAL_PATH)/wifi/wpa_supplicant_hisi.conf:system/etc/wifi/wpa_supplicant_hisi.conf \
+	$(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wpa_supplicant.conf
+
 # Shim Libraries (will be added after fixed boot)
 #PRODUCT_PACKAGES += \
 #	libboringssl-compat \
@@ -196,14 +213,6 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/phone.prop:system/phone.prop
 #	$(LOCAL_PATH)/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
 #	$(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
-# WiFi Configurations
-#PRODUCT_COPY_FILES += \
-#	$(LOCAL_PATH)/wifi/hostapd_hisi.conf:system/etc/wifi/hostapd_hisi.conf \
-#	$(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-#	$(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-#	$(LOCAL_PATH)/wifi/wpa_supplicant_hisi.conf:system/etc/wifi/wpa_supplicant_hisi.conf \
-#	$(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wpa_supplicant.conf
-#
 # GPS Configurations
 #PRODUCT_COPY_FILES += \
 #	$(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
