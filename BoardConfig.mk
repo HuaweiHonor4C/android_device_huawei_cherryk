@@ -18,6 +18,7 @@ USE_CAMERA_STUB := true
 TARGET_OTA_ASSERT_DEVICE := cherry,chm-u01
 EXPERIMENTAL_USE_JAVA7 := true
 requires_openjdk := true
+
 # 64-bit 
 ANDROID_64=true
 TARGET_USES_64_BIT_BINDER := true
@@ -56,6 +57,7 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
+WIFI_DRIVER_NV_PATH_PARAM        := "/sys/module/bcmdhd/parameters/nvram_path"
 WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcm4343.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcm4343s_apsta.bin"
 WIFI_FW_VER                      := a0

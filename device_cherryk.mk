@@ -165,18 +165,18 @@ PRODUCT_COPY_FILES += \
 # WiFi
 PRODUCT_PACKAGES += \
 	wpa_supplicant \
-	wpa_supplicant-conf \
-	libwpa_client
+	hostapd \
+	hostapd_cli \
+	libwpa_client \
+	lib_driver_cmd_bcmdhd \
+	wpa_cli
 
 # Include BCM4343 WLAN Modules
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/firmware/bcm4343/device-bcm.mk)
 
 # WiFi Configurations
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/wifi/hostapd_hisi.conf:system/etc/wifi/hostapd_hisi.conf \
-	$(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
-	$(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf \
-	$(LOCAL_PATH)/wifi/wpa_supplicant_hisi.conf:system/etc/wifi/wpa_supplicant_hisi.conf \
+	$(LOCAL_PATH)/wifi/hostapd.conf:system/etc/hostapd.conf \
 	$(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wpa_supplicant.conf
 
 # Shim Libraries (will be added after fixed boot)
