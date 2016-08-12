@@ -169,7 +169,8 @@ PRODUCT_PACKAGES += \
 	hostapd_cli \
 	libwpa_client \
 	lib_driver_cmd_bcmdhd \
-	wpa_cli
+	wpa_cli \
+	wpa_supplicant_8_lib
 
 # Include BCM4343 WLAN Modules
 $(call inherit-product, hardware/broadcom/wlan/bcmdhd/firmware/bcm4343/device-bcm.mk)
