@@ -166,6 +166,10 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
 	$(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    	wifi.interface=wlan0 \
+    	wifi.supplicant_scan_interval=15
+
 # Shim Libraries (will be added after fixed boot)
 #PRODUCT_PACKAGES += \
 #	libboringssl-compat \
