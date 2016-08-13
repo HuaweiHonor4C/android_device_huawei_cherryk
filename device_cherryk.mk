@@ -159,19 +159,9 @@ PRODUCT_COPY_FILES += \
 #     wpa_supplicant \
 #     wpa_supplicant-conf
 
-# WiFi
-PRODUCT_PACKAGES += \
-	wpa_supplicant \
-	hostapd \
-	hostapd_cli \
-	libwpa_client \
-	lib_driver_cmd_bcmdhd \
-	wpa_cli \
-	wpa_supplicant_8_lib
-
 # WiFi Configurations
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
+	$(LOCAL_PATH)/wifi/hostapd_hisi.conf:system/etc/wifi/hostapd_hisi.conf \
 	$(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
 	$(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
 	$(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
