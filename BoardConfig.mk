@@ -65,8 +65,7 @@ WIFI_BAND                        := 802_11_ABG
 
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := "device/huawei/cherryk/bluetooth"
-BOARD_BLUEDROID_VENDOR_CONF := device/huawei/cherryk/bluetooth/vnd_cherry.txt
+BOARD_BLUEDROID_VENDOR_CONF := device/huawei/cherryk/bluetooth/vnd_cherryk.txt
 
 # GPU and Open GL Rendering
 USE_OPENGL_RENDERER := true

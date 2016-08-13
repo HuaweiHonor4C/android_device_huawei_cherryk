@@ -30,13 +30,10 @@ PRODUCT_COPY_FILES :=  \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/kernel:kernel
 
-# Overlays (Disable overlays for now)
-#DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
-
 # DPI Selection
-PRODUCT_AAPT_CONFIG := xhdpi hdpi normal
-PRODUCT_AAPT_PREF_CONFIG := xhdpi
-PRODUCT_AAPT_PREBUILT_DPI := xhdpi hdpi
+PRODUCT_AAPT_CONFIG := 320dpi
+PRODUCT_AAPT_PREF_CONFIG := 320dpi
+PRODUCT_AAPT_PREBUILT_DPI := 320dpi
 
 # Ramdisk + Selinux Configurations
 $(call inherit-product, $(LOCAL_PATH)/ramdisk/ramdisk_cherryk.mk)
@@ -206,12 +203,8 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/phone.prop:system/phone.prop
 
 # Bluetooth Configurations
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/bluetooth/auto_pair_devlist.conf:system/etc/bluetooth/auto_pair_devlist.conf \
 	$(LOCAL_PATH)/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
-	$(LOCAL_PATH)/bluetooth/bt_stack_beta.conf:system/etc/bluetooth/bt_stack_beta.conf \
-	$(LOCAL_PATH)/bluetooth/bt_stack_log.conf:system/etc/bluetooth/bt_stack_log.conf \
-	$(LOCAL_PATH)/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
-	$(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+	$(LOCAL_PATH)/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf
 
 # GPS Configurations
 #PRODUCT_COPY_FILES += \
