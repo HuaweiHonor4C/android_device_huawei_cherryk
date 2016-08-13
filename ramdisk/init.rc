@@ -4,8 +4,8 @@ import /init.usb.rc
 import /init.${ro.hardware}.rc
 import /init.${ro.zygote}.rc
 
-import /init.hisi.rc
 import /init.cm.rc
+import /init.hisi.rc
 
 import /init.audio.rc
 import /init.connectivity.rc
@@ -53,7 +53,6 @@ on init
     chmod 0660 /sys/fs/cgroup/memory/sw/tasks
 
     mkdir /system
-    mkdir /su 0755 root root # create mount point for SuperSU
     mkdir /data 0771 system system
     mkdir /cache 0770 system cache
     mkdir /config 0500 root root
@@ -678,17 +677,3 @@ service fingerprintd /system/bin/fingerprintd
     class late_start
     user system
     group input
-
-# mount /data/su.img to /su
-on property:sukernel.mount=1
-    mount ext4 loop@/data/su.img /su noatime
-
-# launch SuperSU daemon
-service daemonsu /sbin/launch_daemonsu.sh
-    class late_start
-    user root
-    seclabel u:r:init:s0
-    oneshot
-
-# SuperSU:PATCH:262
-# SuperSU:STOCK:d229d7afc120e741b84404e863039a46c0cadc62

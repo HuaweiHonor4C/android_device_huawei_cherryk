@@ -1,7 +1,6 @@
-# Ramdisk + SELINUX
+# Ramdisk Configs
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/charger:root/charger \
-	$(LOCAL_PATH)/default.prop:root/default.prop \
 	$(LOCAL_PATH)/file_contexts:root/file_contexts \
 	$(LOCAL_PATH)/fstab.hi6210sft:root/fstab.hi6210sft \
 	$(LOCAL_PATH)/init:root/init \
@@ -14,12 +13,10 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/init.6166.rc:root/init.6166.rc \
 	$(LOCAL_PATH)/init.audio.rc:root/init.audio.rc \
 	$(LOCAL_PATH)/init.chip.usb.rc:root/init.chip.usb.rc \
-	$(LOCAL_PATH)/init.cm.rc:root/init.cm.rc \
 	$(LOCAL_PATH)/init.connectivity.bcm43xx.rc:root/init.connectivity.bcm43xx.rc \
 	$(LOCAL_PATH)/init.connectivity.hi110x.rc:root/init.connectivity.hi110x.rc \
 	$(LOCAL_PATH)/init.connectivity.rc:root/init.connectivity.rc \
 	$(LOCAL_PATH)/init.device.rc:root/init.device.rc \
-	$(LOCAL_PATH)/init.environ.rc:root/init.environ.rc \
 	$(LOCAL_PATH)/init.extmodem.rc:root/init.extmodem.rc \
 	$(LOCAL_PATH)/init.hi6210sft.rc:root/init.hi6210sft.rc \
 	$(LOCAL_PATH)/init.hisi.rc:root/init.hisi.rc \
@@ -32,7 +29,6 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/init.recovery.hi110x.rc:root/init.recovery.hi110x.rc \
 	$(LOCAL_PATH)/init.recovery.hi6210sft.rc:root/init.recovery.hi6210sft.rc \
 	$(LOCAL_PATH)/init.recovery.huawei.rc:root/init.recovery.huawei.rc \
-	$(LOCAL_PATH)/init.superuser.rc:root/init.superuser.rc \
 	$(LOCAL_PATH)/init.tee.rc:root/init.tee.rc \
 	$(LOCAL_PATH)/init.trace.rc:root/init.trace.rc \
 	$(LOCAL_PATH)/init.usb.rc:root/init.usb.rc \

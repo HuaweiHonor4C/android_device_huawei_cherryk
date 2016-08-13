@@ -849,6 +849,3 @@
 /data/hwlogdir(/.*)?              u:object_r:hi110x_data_file:s0
 #DTS2015110300838 lWX206033 add begin
 /sys/devices/amba.13/f7102000.i2c/i2c-2/2-0039/ps_phone_status        u:object_r:sysfs_ps_phone_status:s0
-
-# SuperSU
-/su(/.*)? u:object_r:system_file:s0

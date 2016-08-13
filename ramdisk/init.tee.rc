@@ -4,6 +4,16 @@ on init
     chown root root /sec_storage
     chmod 600 /sec_storage
 
+    mkdir /sdcard
+    mount vfat /devices/hi_mci.1/mmc_host/mmc1/* /sdcard nosuid nodev noatime wait
+    chown user user /sdcard
+    chmod 777 -R /sdcard
+
+    mkdir /usb
+    mount auto /devices/hi6xxx-usb-otg/usb1/* /usb nosuid nodev noatime wait
+    chown user user /usb
+    chmod 777 -R /usb
+
 service teecd /sbin/teecd
     socket tee-multi-user stream 660 root system
     class core

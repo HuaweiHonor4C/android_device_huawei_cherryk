@@ -14,6 +14,20 @@
 # limitations under the License.
 #
 
+# Build Props
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.secure=0 \
+	ro.adb.secure=0 \
+	ro.allow.mock.location=0 \
+	ro.debuggable=1 \
+	ro.magic.api.version=0.1 \
+	persist.sys.usb.config=adb \
+	ro.opengles.version=131072 \
+	ro.sf.lcd_density=320 \
+	hw.lcd.lcd_density=320 \
+	debug.atrace.tags.enableflags=0 \
+	persist.sys.usb.config=manufacture,adb
+
 # Operator Name Database (for automatic recognition of network and APN)
 PRODUCT_COPY_FILES :=  \
 	$(LOCAL_PATH)/global/voicemail-conf.xml:system/etc/voicemail-conf.xml \
@@ -64,18 +78,6 @@ PRODUCT_PACKAGES += gralloc.hi6210sft
 
 # OpenGL Renderer
 PRODUCT_PACKAGES += libGLES_android
-
-# Build Props
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.secure=0 \
-	ro.adb.secure=0 \
-	ro.allow.mock.location=0 \
-	ro.debuggable=1 \
-	ro.magic.api.version=0.1 \
-	persist.sys.usb.config=adb \
-	ro.opengles.version=131072 \
-	ro.sf.lcd_density=320 \
-	hw.lcd.lcd_density=320
 
 # Extended OpenGL Renderer Configurations
 PRODUCT_PROPERTY_OVERRIDES += \
