@@ -317,7 +317,26 @@
 /mnt/user(/.*)?             u:object_r:mnt_user_file:s0
 /mnt/runtime(/.*)?          u:object_r:storage_file:s0
 /storage(/.*)?              u:object_r:storage_file:s0
+#line 1 "vendor/huawei/Emui/sepolicy/file_contexts"
 
+# DTS2015010902063 hanmincheng 00178881 20150109 create
+# files in /data/skin/ for theme data file
+#/data/skin(/.*)?         u:object_r:media_rw_data_file:s0
+/data/themes(/.*)?         u:object_r:media_rw_data_file:s0
+# socket for filebackup and All backup application
+/dev/socket/filebackup  u:object_r:filebackup_socket:s0
+
+# executable file for filebackup
+/system/bin/filebackup         u:object_r:filebackup_exec:s0
+
+# DTS2015011602956 hanmincheng 00178881 20150116 begin
+# security context for /data/data/com.huawei.android.internal.app/lru-package.xml
+/data/data/com.huawei.android.internal.app/lru-package.xml  --   u:object_r:lru_pkgs_file:s0
+# DTS2015011602956 hanmincheng 00178881 20150116 end
+
+# DTS2015082610005 diaoyuelei/00347692 20150923 begin
+/data/ctrl_socket(/.*)?          u:object_r:ctrl_socket_file:s0
+# DTS2015082610005 diaoyuelei/00347692 20150923 end
 #line 1 "device/hisi/common/sepolicy/common/file_contexts"
 ##########################
 # hisi Devices

@@ -1,5 +1,6 @@
-import /init.connectivity.bcm43xx.rc
 import /init.connectivity.hi110x.rc
+import /init.connectivity.bcm43xx.rc
+
 on early-init
 
 on init

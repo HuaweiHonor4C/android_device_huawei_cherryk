@@ -172,13 +172,12 @@ PRODUCT_PACKAGES += \
 	wpa_cli \
 	wpa_supplicant_8_lib
 
-# Include BCM4343 WLAN Modules
-$(call inherit-product, hardware/broadcom/wlan/bcmdhd/firmware/bcm4343/device-bcm.mk)
-
 # WiFi Configurations
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/wifi/hostapd.conf:system/etc/hostapd.conf \
-	$(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wpa_supplicant.conf
+	$(LOCAL_PATH)/wifi/hostapd.conf:system/etc/wifi/hostapd.conf \
+	$(LOCAL_PATH)/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+	$(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
+	$(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
 # Shim Libraries (will be added after fixed boot)
 #PRODUCT_PACKAGES += \
@@ -206,13 +205,13 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/phone.prop:system/phone.prop
 #	$(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
 
 # Bluetooth Configurations
-#PRODUCT_COPY_FILES += \
-#	$(LOCAL_PATH)/bluetooth/auto_pair_devlist.conf:system/etc/bluetooth/auto_pair_devlist.conf \
-#	$(LOCAL_PATH)/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
-#	$(LOCAL_PATH)/bluetooth/bt_stack_beta.conf:system/etc/bluetooth/bt_stack_beta.conf \
-#	$(LOCAL_PATH)/bluetooth/bt_stack_log.conf:system/etc/bluetooth/bt_stack_log.conf \
-#	$(LOCAL_PATH)/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
-#	$(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/bluetooth/auto_pair_devlist.conf:system/etc/bluetooth/auto_pair_devlist.conf \
+	$(LOCAL_PATH)/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
+	$(LOCAL_PATH)/bluetooth/bt_stack_beta.conf:system/etc/bluetooth/bt_stack_beta.conf \
+	$(LOCAL_PATH)/bluetooth/bt_stack_log.conf:system/etc/bluetooth/bt_stack_log.conf \
+	$(LOCAL_PATH)/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf \
+	$(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
 
 # GPS Configurations
 #PRODUCT_COPY_FILES += \

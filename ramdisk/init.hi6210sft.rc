@@ -1,16 +1,3 @@
-import /init.hisi.rc
-
-import /init.audio.rc
-import /init.connectivity.rc
-import /init.device.rc
-import /init.extmodem.rc
-import /init.manufacture.rc
-import /init.performance.rc
-import /init.platform.rc
-import /init.protocol.rc
-import /init.trace.rc
-import /init.${ro.boardid.product}.rc
-import /init.post-fs-data.rc
 import /init.tee.rc
 
 

@@ -1,7 +1,10 @@
-# Ramdisk Configuration (from EU B570)
+# Ramdisk + SELINUX
 PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/charger:root/charger \
+	$(LOCAL_PATH)/default.prop:root/default.prop \
 	$(LOCAL_PATH)/file_contexts:root/file_contexts \
 	$(LOCAL_PATH)/fstab.hi6210sft:root/fstab.hi6210sft \
+	$(LOCAL_PATH)/init:root/init \
 	$(LOCAL_PATH)/init.10107.rc:root/init.10107.rc \
 	$(LOCAL_PATH)/init.102174.rc:root/init.102174.rc \
 	$(LOCAL_PATH)/init.142783.rc:root/init.142783.rc \
@@ -11,10 +14,12 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/init.6166.rc:root/init.6166.rc \
 	$(LOCAL_PATH)/init.audio.rc:root/init.audio.rc \
 	$(LOCAL_PATH)/init.chip.usb.rc:root/init.chip.usb.rc \
+	$(LOCAL_PATH)/init.cm.rc:root/init.cm.rc \
 	$(LOCAL_PATH)/init.connectivity.bcm43xx.rc:root/init.connectivity.bcm43xx.rc \
 	$(LOCAL_PATH)/init.connectivity.hi110x.rc:root/init.connectivity.hi110x.rc \
 	$(LOCAL_PATH)/init.connectivity.rc:root/init.connectivity.rc \
 	$(LOCAL_PATH)/init.device.rc:root/init.device.rc \
+	$(LOCAL_PATH)/init.environ.rc:root/init.environ.rc \
 	$(LOCAL_PATH)/init.extmodem.rc:root/init.extmodem.rc \
 	$(LOCAL_PATH)/init.hi6210sft.rc:root/init.hi6210sft.rc \
 	$(LOCAL_PATH)/init.hisi.rc:root/init.hisi.rc \
@@ -23,29 +28,42 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/init.platform.rc:root/init.platform.rc \
 	$(LOCAL_PATH)/init.post-fs-data.rc:root/init.post-fs-data.rc \
 	$(LOCAL_PATH)/init.protocol.rc:root/init.protocol.rc \
+	$(LOCAL_PATH)/init.rc:root/init.rc \
 	$(LOCAL_PATH)/init.recovery.hi110x.rc:root/init.recovery.hi110x.rc \
-	$(LOCAL_PATH)/seapp_contexts:root/seapp_contexts \
-	$(LOCAL_PATH)/selinux_version:root/selinux_version \
-	$(LOCAL_PATH)/sepolicy:root/sepolicy \
 	$(LOCAL_PATH)/init.recovery.hi6210sft.rc:root/init.recovery.hi6210sft.rc \
 	$(LOCAL_PATH)/init.recovery.huawei.rc:root/init.recovery.huawei.rc \
+	$(LOCAL_PATH)/init.superuser.rc:root/init.superuser.rc \
 	$(LOCAL_PATH)/init.tee.rc:root/init.tee.rc \
 	$(LOCAL_PATH)/init.trace.rc:root/init.trace.rc \
 	$(LOCAL_PATH)/init.usb.rc:root/init.usb.rc \
+	$(LOCAL_PATH)/init.zygote32.rc:root/init.zygote32.rc \
+	$(LOCAL_PATH)/init.zygote64_32.rc:root/init.zygote64_32.rc \
+	$(LOCAL_PATH)/property_contexts:root/property_contexts \
+	$(LOCAL_PATH)/ramdisk_cherryk.mk:root/ramdisk_cherryk.mk \
+	$(LOCAL_PATH)/resetFactory.cfg:root/resetFactory.cfg \
+	$(LOCAL_PATH)/seapp_contexts:root/seapp_contexts \
+	$(LOCAL_PATH)/selinux_version:root/selinux_version \
+	$(LOCAL_PATH)/sepolicy:root/sepolicy \
+	$(LOCAL_PATH)/service_contexts:root/service_contexts \
+	$(LOCAL_PATH)/ueventd.10107.rc:root/ueventd.10107.rc \
+	$(LOCAL_PATH)/ueventd.102174.rc:root/ueventd.102174.rc \
+	$(LOCAL_PATH)/ueventd.142783.rc:root/ueventd.142783.rc \
+	$(LOCAL_PATH)/ueventd.51055.rc:root/ueventd.51055.rc \
 	$(LOCAL_PATH)/ueventd.5801.rc:root/ueventd.5801.rc \
 	$(LOCAL_PATH)/ueventd.61122.rc:root/ueventd.61122.rc \
 	$(LOCAL_PATH)/ueventd.6166.rc:root/ueventd.6166.rc \
 	$(LOCAL_PATH)/ueventd.hi6210sft.rc:root/ueventd.hi6210sft.rc \
 	$(LOCAL_PATH)/ueventd.rc:root/ueventd.rc \
-	$(LOCAL_PATH)/property_contexts:root/property_contexts \
-	$(LOCAL_PATH)/service_contexts:root/service_contexts \
-	$(LOCAL_PATH)/ueventd.10107.rc:root/ueventd.10107.rc \
-	$(LOCAL_PATH)/ueventd.51055.rc:root/ueventd.51055. \
+	$(LOCAL_PATH)/sbin/adbd:root/sbin/adbd \
 	$(LOCAL_PATH)/sbin/check_root:root/sbin/check_root \
 	$(LOCAL_PATH)/sbin/hdbd:root/sbin/hdbd \
+	$(LOCAL_PATH)/sbin/healthd:root/sbin/healthd \
 	$(LOCAL_PATH)/sbin/hw_ueventd:root/sbin/hw_ueventd \
 	$(LOCAL_PATH)/sbin/kmsgcat:root/sbin/kmsgcat \
 	$(LOCAL_PATH)/sbin/logctl_service:root/sbin/logctl_service \
 	$(LOCAL_PATH)/sbin/ntfs-3gd:root/sbin/ntfs-3gd \
 	$(LOCAL_PATH)/sbin/oeminfo_nvm_server:root/sbin/oeminfo_nvm_server \
-	$(LOCAL_PATH)/sbin/teecd:root/sbin/teecd
+	$(LOCAL_PATH)/sbin/teecd:root/sbin/teecd \
+	$(LOCAL_PATH)/sbin/ueventd:root/sbin/ueventd \
+	$(LOCAL_PATH)/sbin/volisnotd:root/sbin/volisnotd \
+	$(LOCAL_PATH)/sbin/watchdogd:root/sbin/watchdogd

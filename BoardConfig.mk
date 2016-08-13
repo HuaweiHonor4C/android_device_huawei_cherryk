@@ -58,14 +58,15 @@ BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
 WIFI_DRIVER_NV_PATH_PARAM        := "/sys/module/bcmdhd/parameters/nvram_path"
-WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcm4343.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcm4343s_apsta.bin"
-WIFI_FW_VER                      := a0
+WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcm4343s_hw.bin"
+WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcm4343s_apsta_hw.bin"
+WIFI_DRIVER_FW_PATH_P2P          := "/system/vendor/firmware/fw_bcm4343s_p2p_hw.bin"
 WIFI_BAND                        := 802_11_ABG
-#BOARD_HAVE_BLUETOOTH := true
-#BOARD_HAVE_BLUETOOTH_BCM := true
-#BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := "device/huawei/cherryk/bluetooth"
-#BOARD_BLUEDROID_VENDOR_CONF := device/huawei/cherryk/bluetooth/vnd_cherry.txt
+
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := "device/huawei/cherryk/bluetooth"
+BOARD_BLUEDROID_VENDOR_CONF := device/huawei/cherryk/bluetooth/vnd_cherry.txt
 
 # GPU and Open GL Rendering
 USE_OPENGL_RENDERER := true
