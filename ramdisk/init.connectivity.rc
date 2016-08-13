@@ -1,4 +1,4 @@
-import /init.connectivity.hi110x.chiptype}.rc
+import /init.connectivity.hi110x.rc
 import /init.connectivity.bcm43xx.rc
 
 on early-init
