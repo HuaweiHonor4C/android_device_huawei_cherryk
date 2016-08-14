@@ -53,7 +53,7 @@ PRODUCT_AAPT_PREBUILT_DPI := 320dpi
 $(call inherit-product, $(LOCAL_PATH)/ramdisk/ramdisk_cherryk.mk)
 
 # Add openssh support for remote debugging and job submission
-PRODUCT_PACKAGES += ssh sftp scp sshd ssh-keygen sshd_config start-ssh uim wpa_supplicant
+PRODUCT_PACKAGES += ssh sftp scp sshd ssh-keygen sshd_config start-ssh uim
 
 # Build and run only ART
 PRODUCT_RUNTIMES := runtime_libart_default
@@ -170,6 +170,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     	wifi.interface=wlan0 \
     	wifi.supplicant_scan_interval=15
+
+# Battery Stats
+PRODUCT_PACKAGES += libhealthd.hi6210sft
 
 # Shim Libraries (will be added after fixed boot)
 #PRODUCT_PACKAGES += \
