@@ -96,8 +96,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Force disable Strict Mode
 PRODUCT_PROPERTY_OVERRIDES += \
-	persist.sys.strictmode.visual=0 \
-	persist.sys.strictmode.disable=1
+	persist.sys.strictmode.visual=0
 
 # Dalvik Flags
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
@@ -138,9 +137,9 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.software.app_widgets.xml:system/etc/permissions/android.software.app_widgets.xml
 
 # RIL
-#PRODUCT_PROPERTY_OVERRIDES += \
-#     audioril.lib=libhuawei-audio-ril.so \
-#     ro.telephony.ril_class=HuaweiRIL
+PRODUCT_PROPERTY_OVERRIDES += \
+    audioril.lib=libhuawei-audio-ril.so \
+    ro.telephony.ril_class=HuaweiRIL
 
 # Extra Packages
 #PRODUCT_PACKAGES += \
