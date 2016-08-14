@@ -171,6 +171,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     	wifi.interface=wlan0 \
     	wifi.supplicant_scan_interval=15
 
+PRODUCT_PACKAGES += \
+	wpa_supplicant \
+	wpa_supplicant.conf \
+	hostapd \
+	libwpa_client \
+	dhcpcd.conf \
+	libwifi-hal-bcm
+
+# WiFi cal NVRAM file
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/bcmdhd.cal:system/etc/wifi/bcmdhd.cal
+
 # Battery Stats
 PRODUCT_PACKAGES += libhealthd.hi6210sft
 
