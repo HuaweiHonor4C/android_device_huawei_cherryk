@@ -96,7 +96,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Force disable Strict Mode
 PRODUCT_PROPERTY_OVERRIDES += \
-	persist.sys.strictmode.visual=0
+	persist.sys.strictmode.visual=0 \
+	persist.sys.strictmode.disable=1
 
 # Dalvik Flags
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)

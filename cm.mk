@@ -13,6 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+# Inherit from these products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
@@ -31,15 +34,16 @@ $(call inherit-product, device/huawei/cherryk/device_cherryk.mk)
 
 # Apps
 PRODUCT_PACKAGES += \
-	Launcher3
+	Launcher3 \
+	Dialer \
+	CarrierConfig
 #	FMRadio \
-#	CarrierConfig
 
 # Device Identifiers
 PRODUCT_DEVICE := cherryk
 PRODUCT_NAME := cm_cherryk
 PRODUCT_BRAND := Android
-PRODUCT_MODEL := Honor 4X/4C Kirin
+PRODUCT_MODEL := cherryk
 PRODUCT_MANUFACTURER := Huawei
 
 # Inherit Vendor configurations
