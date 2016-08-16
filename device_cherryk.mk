@@ -143,23 +143,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=HuaweiRIL
 
 # Extra Packages
-#PRODUCT_PACKAGES += \
-#     audio.primary.default \
-#     audio_policy.stub \
-#     audio.a2dp.default \
-#     audio.usb.default \
-#     audio.r_submix.default \
-#     libaudioutils \
-#     libtinyalsa \
-#     tinyplay \
-#     tinycap \
-#     tinymix \
-#     tinypcminfo \
-#     sound_trigger.primary.hi6210sft \
-#     libion.huawei \
-#     libwpa_client \
-#     wpa_supplicant \
-#     wpa_supplicant-conf
+PRODUCT_PACKAGES += \
+    audio.primary.default \
+    audio_policy.stub \
+    audio.a2dp.default \
+    audio.usb.default \
+    audio.r_submix.default \
+    libaudioutils \
+    libtinyalsa \
+    tinyplay \
+    tinycap \
+    tinymix \
+    tinypcminfo
 
 # WiFi Configurations
 PRODUCT_COPY_FILES += \
@@ -202,15 +197,15 @@ PRODUCT_PACKAGES += libhealthd.hi6210sft
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/phone.prop:system/phone.prop
 
 # Audio Configurations
-#PRODUCT_COPY_FILES += \
-#	$(LOCAL_PATH)/audio/audio_effects.conf:system/etc/audio_effects.conf \
-#	$(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/audio/audio_effects.conf:system/etc/audio_effects.conf \
+	$(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf
 
 # Media Profiles (Patched)
-#PRODUCT_COPY_FILES += \
-#	$(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml \
-#	$(LOCAL_PATH)/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
-#	$(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/media/media_codecs.xml:system/etc/media_codecs.xml \
+	$(LOCAL_PATH)/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+	$(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml
 
 # Bluetooth Configurations
 PRODUCT_COPY_FILES += \
@@ -218,9 +213,9 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/bluetooth/bt_stack.conf:system/etc/bluetooth/bt_stack.conf
 
 # GPS Configurations
-#PRODUCT_COPY_FILES += \
-#	$(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
-#	$(LOCAL_PATH)/gps/gpsconfig.xml:system/etc/gpsconfig.xml
+PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
+	$(LOCAL_PATH)/gps/gpsconfig.xml:system/etc/gpsconfig.xml
 
 # Thermal Configurations (These will be added later)
 

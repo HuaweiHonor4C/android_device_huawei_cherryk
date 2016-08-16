@@ -62,9 +62,9 @@ WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcm4343s_apsta.b
 WIFI_DRIVER_FW_PATH_P2P          := "/system/vendor/firmware/fw_bcm4343s_p2p.bin"
 WIFI_BAND                        := 802_11_ABG
 
-#BOARD_HAVE_BLUETOOTH := true
-#BOARD_HAVE_BLUETOOTH_BCM := true
-#BOARD_BLUEDROID_VENDOR_CONF := device/huawei/cherryk/bluetooth/vnd_cherryk.txt
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_BLUEDROID_VENDOR_CONF := device/huawei/cherryk/bluetooth/vnd_cherryk.txt
 
 # GPU and Open GL Rendering
 USE_OPENGL_RENDERER := true
