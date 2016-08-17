@@ -50,6 +50,10 @@ TARGET_2ND_CPU_ABI2 := armeabi
 # Compiler Optimizations
 ARCH_ARM_HIGH_OPTIMIZATION := true
 
+# Flags
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+
 # GPU and Open GL Rendering
 USE_OPENGL_RENDERER := true
 ANDROID_ENABLE_RENDERSCRIPT := true
@@ -79,7 +83,20 @@ TARGET_KERNEL_SOURCE := kernel
 TARGET_KERNEL_CONFIG := cyanogenmod_hi6210sft_defconfig
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_ARCH := arm64
-BOARD_KERNEL_IMAGE_NAME := zImage
+BOARD_KERNEL_IMAGE_NAME := Image
+
+# Wi-Fi (Not sure if device actually has BCM module)
+WPA_SUPPLICANT_VERSION           := VER_0_8_X
+BOARD_WLAN_DEVICE                := bcmdhd
+BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+BOARD_HOSTAPD_DRIVER             := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
+WIFI_DRIVER_FW_PATH_AP    := "/vendor/firmware/fw_bcm4343s_apsta_hw.bin"
+WIFI_DRIVER_FW_PATH_STA   := "/vendor/firmware/fw_bcm4343s_hw.bin"
+WIFI_DRIVER_FW_PATH_P2P   := "/vendor/firmware/fw_bcm4343s_p2p_hw.bin"
+WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/bcmdhd/parameters/firmware_path"
+WIFI_DRIVER_MODULE_ARG    := "firmware_path=/system/vendor/firmware/fw_bcm4343s_hw.bin nvram_path=/system/vendor/firmware/nvram4343s_hw.txt"
 
 # Partition Sizes
 BOARD_BOOTIMAGE_PARTITION_SIZE := 25165824
@@ -105,3 +122,12 @@ TARGET_BOOTANIMATION_PRELOAD := true
 
 # Enable WEBGL in WebKit
 ENABLE_WEBGL := true
+
+# Include an expanded selection of fonts
+EXTENDED_FONT_FOOTPRINT := true
+
+# Healthd
+BOARD_HAL_STATIC_LIBRARIES += libhealthd.hi6210sft
+
+# CPUSETS Feature
+ENABLE_CPUSETS                              := true

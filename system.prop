@@ -53,5 +53,7 @@ net.bt.name=Android
 ro.config.fm_type=libbcmfm_if
 ro.config.readBtAddress=true
 
+init.svc.hisi_bfg=stopped
+
 
 

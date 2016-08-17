@@ -14,6 +14,14 @@
 # limitations under the License.
 #
 
+# AAPT high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
+PRODUCT_AAPT_PREBUILT_DPI := 320dpi
+
+# The gps config appropriate for this device
+$(call inherit-product, device/common/gps/gps_us_supl.mk)
+
 # Build Props
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.secure=0 \
@@ -21,12 +29,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.allow.mock.location=0 \
 	ro.debuggable=1 \
 	ro.magic.api.version=0.1 \
-	persist.sys.usb.config=adb \
+	persist.sys.usb.config=manufacture,adb \
 	ro.opengles.version=131072 \
 	ro.sf.lcd_density=320 \
 	hw.lcd.lcd_density=320 \
-	debug.atrace.tags.enableflags=0 \
-	persist.sys.usb.config=manufacture,adb
+	debug.atrace.tags.enableflags=0
 
 # Operator Name Database (for automatic recognition of network and APN)
 PRODUCT_COPY_FILES :=  \
@@ -39,15 +46,6 @@ PRODUCT_COPY_FILES :=  \
 	$(LOCAL_PATH)/global/ons/ons.bin:system/etc/ons/ons.bin \
 	$(LOCAL_PATH)/global/xml/hw_defaults.xml:system/etc/xml/hw_defaults.xml \
 	$(LOCAL_PATH)/global/xml/mccTable_V2.xml:system/etc/xml/mccTable_V2.xml
-
-# Copy Prebuilt Kernel
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/kernel:kernel
-
-# DPI Selection
-PRODUCT_AAPT_CONFIG := 320dpi
-PRODUCT_AAPT_PREF_CONFIG := 320dpi
-PRODUCT_AAPT_PREBUILT_DPI := 320dpi
 
 # Ramdisk + Selinux Configurations
 $(call inherit-product, $(LOCAL_PATH)/ramdisk/ramdisk_cherryk.mk)
@@ -79,21 +77,6 @@ PRODUCT_PACKAGES += gralloc.hi6210sft
 # OpenGL Renderer
 PRODUCT_PACKAGES += libGLES_android
 
-# Extended OpenGL Renderer Configurations
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.hwui.texture_cache_size=72 \
-	ro.hwui.texture_cache_flushrate=0.4 \
-	ro.hwui.layer_cache_size=48 \
-	ro.hwui.path_cache_size=32 \
-	ro.hwui.shape_cache_size=2 \
-	ro.hwui.drop_shadow_cache_size=6 \
-	ro.hwui.gradient_cache_size=1 \
-	ro.hwui.text_large_cache_height=1024 \
-	ro.hwui.text_large_cache_width=2048 \
-	ro.hwui.text_small_cache_height=1024 \
-	ro.hwui.text_small_cache_width=1024 \
-	ro.hwui.r_buffer_cache_size=8
-
 # Force disable Strict Mode
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.sys.strictmode.visual=0 \
@@ -102,9 +85,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Dalvik Flags
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
+# HWUI Memory Config
+$(call inherit-product-if-exists, frameworks/native/build/phone-xhdpi-2048-hwui-memory.mk)
+
 # Off charging mode
 PRODUCT_PACKAGES += \
     charger_res_images
+
+# Time Zone data
+PRODUCT_COPY_FILES += \
+	bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -142,19 +132,28 @@ PRODUCT_PROPERTY_OVERRIDES += \
     audioril.lib=libhuawei-audio-ril.so \
     ro.telephony.ril_class=HuaweiRIL
 
-# Extra Packages
+# Audio Packages
 PRODUCT_PACKAGES += \
     audio.primary.default \
     audio_policy.stub \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
+    sound_trigger.primary.hi6210sft \
     libaudioutils \
     libtinyalsa \
     tinyplay \
     tinycap \
     tinymix \
     tinypcminfo
+
+# Set zygote config
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
+PRODUCT_PROPERTY_OVERRIDES += \
+        debug.sf.no_hw_vsync=1 \
+        ro.secure=0 \
+        ro.adb.secure=0
+PRODUCT_COPY_FILES += system/core/rootdir/init.zygote64_32.rc:root/init.zygote64_32.rc
 
 # WiFi Configurations
 PRODUCT_COPY_FILES += \
@@ -163,24 +162,14 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
 	$(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    	wifi.interface=wlan0 \
-    	wifi.supplicant_scan_interval=15
-
 PRODUCT_PACKAGES += \
 	wpa_supplicant \
 	wpa_supplicant.conf \
 	hostapd \
 	libwpa_client \
 	dhcpcd.conf \
-	libwifi-hal-bcm
-
-# WiFi cal NVRAM file
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/bcmdhd.cal:system/etc/wifi/bcmdhd.cal
-
-# Battery Stats
-PRODUCT_PACKAGES += libhealthd.hi6210sft
+	libwifi-service \
+	dhcpcd
 
 # Shim Libraries (will be added after fixed boot)
 #PRODUCT_PACKAGES += \
@@ -217,3 +206,19 @@ PRODUCT_COPY_FILES += \
 # Thermal Configurations (These will be added later)
 
 # CPU Profiles (These will be added later)
+
+# Set default USB interface
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mtp
+
+# USB OTG support
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.sys.isUsbOtgEnabled=true
+
+# Additional Packages
+PRODUCT_PACKAGES += \
+	Torch \
+	com.android.future.usb.accessory
+
+# Security Enhanced Linux
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.boot.selinux=0
