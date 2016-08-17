@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
 # Inherit from these products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
@@ -36,8 +37,8 @@ $(call inherit-product, device/huawei/cherryk/device_cherryk.mk)
 PRODUCT_PACKAGES += \
 	Launcher3 \
 	Dialer \
-	CarrierConfig
-#	FMRadio \
+	CarrierConfig \
+	FMRadio
 
 # Device Identifiers
 PRODUCT_DEVICE := cherryk

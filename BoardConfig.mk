@@ -15,7 +15,9 @@
 #
 
 USE_CAMERA_STUB := true
-TARGET_OTA_ASSERT_DEVICE := cherry,chm-u01
+TARGET_OTA_ASSERT_DEVICE := cherry,chm-u01,cherryk,CHM-U01
+
+# Java flags (build system specific)
 EXPERIMENTAL_USE_JAVA7 := true
 requires_openjdk := true
 
@@ -41,30 +43,12 @@ ARCH_ARM_HAVE_NEON := true
 # Secondary Architecture
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
-TARGET_2ND_CPU_VARIANT := cortex-a7
+TARGET_2ND_CPU_VARIANT := cortex-a15
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 
 # Compiler Optimizations
 ARCH_ARM_HIGH_OPTIMIZATION := true
-
-# Wifi & Bluetooth
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
-BOARD_WLAN_DEVICE                := bcmdhd
-BOARD_WLAN_DEVICE_REV            := bcm4343
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-WIFI_BAND                        := 802_11_ABG
-WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcm4343s_apsta_hw.bin"
-WIFI_DRIVER_FW_PATH_P2P          := "/system/vendor/firmware/fw_bcm4343s_p2p_hw.bin"
-WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
-WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcm4343s_hw.bin"
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
-BOARD_BLUEDROID_VENDOR_CONF := device/huawei/cherryk/bluetooth/vnd_cherryk.txt
 
 # GPU and Open GL Rendering
 USE_OPENGL_RENDERER := true
@@ -90,7 +74,6 @@ BOARD_KERNEL_CMDLINE := hisi_dma_print=0 vmalloc=384M maxcpus=8 coherent_pool=51
 BOARD_KERNEL_BASE := 0x07478000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x07b88000 --tags_offset 0x02988000
-#TARGET_PREBUILT_KERNEL := device/huawei/cherryk/kernel
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel
 TARGET_KERNEL_CONFIG := cyanogenmod_hi6210sft_defconfig
@@ -113,7 +96,7 @@ DEVICE_SCREEN_WIDTH := 720
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
 BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_RECOVERY_FSTAB := device/huawei/cherryk/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/huawei/cherryk/fstab.hi6210sft
 RECOVERY_FSTAB_VERSION := 2
 TARGET_USERIMAGES_USE_EXT4 := true
 

@@ -1,4 +1,4 @@
-# RIL Properties
+# RIL and Modem props
 gsm.version.ril-impl=android hisilicon balong-ril 1.0
 init.svc.ril-daemon=running
 init.svc.rillogcat=stopped
@@ -44,4 +44,14 @@ ro.config.hw_directly_callfdn=true
 ro.dual.sim.phone=true
 persist.sys.pgps.config=0
 ro.com.android.mobiledata=true
+ro.balong_debug.port_num=7
+audioril.lib=libhuawei-audio-ril.so
+
+# Misc
+ro.bt.bdaddr_path=/data/misc/bluedroid/macbt
+net.bt.name=Android
+ro.config.fm_type=libbcmfm_if
+ro.config.readBtAddress=true
+
+
 

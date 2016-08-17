@@ -193,9 +193,6 @@ PRODUCT_PACKAGES += libhealthd.hi6210sft
 #BOARD_SEPOLICY_DIRS += \
 #     $(LOCAL_PATH)/selinux
 
-# Phone Modem Prop
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/phone.prop:system/phone.prop
-
 # Audio Configurations
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/audio/audio_effects.conf:system/etc/audio_effects.conf \
