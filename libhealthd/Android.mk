@@ -19,5 +19,5 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES := healthd_board_hi6210sft.cpp
 LOCAL_MODULE := libhealthd.hi6210sft
 LOCAL_STATIC_LIBRARIES := libutils
-LOCAL_C_INCLUDES := systen/core/healthd
+LOCAL_C_INCLUDES := system/core/healthd
 include $(BUILD_STATIC_LIBRARY)
