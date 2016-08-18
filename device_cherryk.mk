@@ -47,7 +47,7 @@ PRODUCT_COPY_FILES :=  \
 	$(LOCAL_PATH)/global/xml/hw_defaults.xml:system/etc/xml/hw_defaults.xml \
 	$(LOCAL_PATH)/global/xml/mccTable_V2.xml:system/etc/xml/mccTable_V2.xml
 
-# Ramdisk + Selinux Configurations
+# Ramdisk
 $(call inherit-product, $(LOCAL_PATH)/ramdisk/ramdisk_cherryk.mk)
 
 # Add openssh support for remote debugging and job submission
@@ -150,9 +150,9 @@ PRODUCT_PACKAGES += \
 # Set zygote config
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
 PRODUCT_PROPERTY_OVERRIDES += \
-        debug.sf.no_hw_vsync=1 \
-        ro.secure=0 \
-        ro.adb.secure=0
+    debug.sf.no_hw_vsync=1 \
+    ro.secure=0 \
+    ro.adb.secure=0
 PRODUCT_COPY_FILES += system/core/rootdir/init.zygote64_32.rc:root/init.zygote64_32.rc
 
 # WiFi Configurations
@@ -167,9 +167,21 @@ PRODUCT_PACKAGES += \
 	wpa_supplicant.conf \
 	hostapd \
 	libwpa_client \
+	libwpa_cli \
 	dhcpcd.conf \
 	libwifi-service \
 	dhcpcd
+
+# Camera
+PRODUCT_PACKAGES += \
+	camera.default \
+	camera.hi6210sft
+
+# libhi6210sft (contains symbols, thanks to @XePeleato)
+PRODUCT_PACKAGES += libhi6210sft
+
+# Build Hardware Composer
+PRODUCT_PACKAGES += hwcomposer.hi6210sft
 
 # Shim Libraries (will be added after fixed boot)
 #PRODUCT_PACKAGES += \
@@ -179,8 +191,8 @@ PRODUCT_PACKAGES += \
 #	libhw_log
 
 # Security Enhanced Linux Configurations
-#BOARD_SEPOLICY_DIRS += \
-#     $(LOCAL_PATH)/selinux
+$(call inherit-product, $(LOCAL_PATH)/selinux/selinux_cherryk.mk)
+
 
 # Audio Configurations
 PRODUCT_COPY_FILES += \

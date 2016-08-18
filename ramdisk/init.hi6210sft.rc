@@ -167,9 +167,24 @@ on init
     fix_ext4 /sbin/e2fsck_s /dev/block/mmcblk0p11
     mount ext4 /dev/block/mmcblk0p11 /mnvm2:0 nosuid nodev noatime context=u:object_r:modem_nv_file:s0
 
+    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+    mkdir /mnt/media_rw/usbotg 0700 media_rw media_rw
+    mkdir /storage/sdcard1 0700 root root
+    mkdir /storage/usbotg 0700 root root
+
+     # Support legacy paths
+    symlink /storage/emulated/legacy /sdcard
+    symlink /storage/emulated/legacy /mnt/sdcard
+    symlink /storage/emulated/legacy /storage/sdcard0
+    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+    symlink /storage/usbotg /usbotg
+    symlink /storage/usbotg /mnt/usbotg
+
     chmod 0774 /mnvm2:0
     chown root root /mnvm2:0
     write /proc/modem_depend 1
+
+    export SECONDARY_STORAGE /storage/sdcard1
 
 on post-fs
 
