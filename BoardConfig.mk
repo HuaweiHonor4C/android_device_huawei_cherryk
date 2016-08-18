@@ -94,6 +94,7 @@ CONFIG_DRIVER_WEXT := y
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
+BOARD_BLUEDROID_VENDOR_CONF := $(LOCAL_PATH)/bluetooth/bt_vendor.conf
 
 # Partition Sizes
 BOARD_BOOTIMAGE_PARTITION_SIZE := 25165824
