@@ -1,8 +1,5 @@
-import /init.connectivity.hi1101.rc
 import /init.hisi.rc
-import /init.usb.hi6210sft.rc
 import /init.extmodem.rc
-import /init.platform.rc
 
 on early-boot
     symlink /sdcard /mnt/sdcard
@@ -10,25 +7,40 @@ on early-boot
     mkdir /mnt/media_rw 0750 media_rw media_rw
     mkdir /mnt/pstore 0770 root system
     mount pstore pstore /mnt/pstore
+	
+	# Audio START
+	chmod 0660 /dev/tfa9895
+    chown media media /dev/tfa9895
+    chmod 0660 /dev/ear_pa
+    chown media media /dev/ear_pa
+	# Audio END
+	
+on early-init
+
+	# Connectivity START
+    setprop ro.connectivity.sta_p2p_coex false
+    setprop wifi.interface wlan0
+	# Connectivity END
 
 on charger
-    mount ext4 /dev/block/platform/hi_mci.0/by-name/splash2 /splash2 wait rw nosuid nodev
-    mount ext4 /dev/block/platform/hi_mci.0/by-name/system /system ro
-    mount_all /fstab.${ro.hardware}
-    class_start charger
-    chown system system /sys/class/android_usb/android0/switch_request
-    chmod 0664 /sys/class/android_usb/android0/switch_request
-    start hw_ueventd
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor optdemand
 
 on fs
     setprop ro.crypto.fuse_sdcard true
     symlink /splash2/fac_log /data/log/fac_log
- 
-    mount_all /fstab.hi6210sft.rc
+    mount ext4 /dev/block/mmcblk0p34 /cache nosuid nodev noatime wait crypt discard,noauto_da_alloc,data=ordered,user_xattr,discard,barrier=1
+	
+    wait /dev/block/mmcblk0p38
+    mount ext4 /dev/block/mmcblk0p38 /system ro
+
+    wait /dev/block/mmcblk0p40
+    mount_all /fstab.${ro.hardware}
     
+    mount ext4 /dev/block/platform/hi_mci.0/by-name/cust /cust wait ro nosuid nodev
+
     wait /dev/block/platform/hi_mci.0/by-name/oeminfo
     start oeminfo_nvm
+
 
     chmod 0774 /mnvm1:0
     chmod 0774 /mnvm2:0
@@ -40,42 +52,6 @@ on fs
     chown root root /mnvm3:0
     chown root root /dsp:0
 
-    restorecon       /sys/class/leds/red/brightness
-    restorecon       /sys/class/leds/green/brightness
-    restorecon       /sys/class/leds/blue/brightness
-    restorecon      /sys/class/leds/torch_front/brightness
-    restorecon      /sys/class/leds/torch/brightness
-    restorecon      /sys/class/hw_power/charger/charge_data/enable_charger
-    restorecon     /sys/class/leds/lcd_backlight0/brightness
-    restorecon     /sys/class/graphics/fb0/lcd_test_config
-    restorecon     /sys/class/graphics/fb0/amoled_pcd_errflag_check
-    restorecon     /sys/class/ina231/ina231_0/ina231_debug
-    restorecon     /sys/class/ina231/ina231_0/ina231_set
-    restorecon     /sys/class/ina231/ina231_0/ina231_value
-    restorecon     /sys/class/ina231/ina231_1/ina231_debug
-    restorecon    /sys/class/ina231/ina231_1/ina231_set
-    restorecon    /sys/class/ina231/ina231_1/ina231_value
-    restorecon    /sys/class/graphics/fb0/amoled_acl
-    restorecon    /sys/class/graphics/fb0/amoled_hbm
-    restorecon      /sys/kernel/set_hmp_thresholds/policy
-    restorecon      /sys/class/graphics/fb0/lcd_cabc_mode
-    restorecon      /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies
-    restorecon      /sys/devices/system/cpu/cpu4/cpufreq/scaling_available_frequencies
-    restorecon      /sys/devices/ddrfreq/devfreq/ddrfreq/min_freq
-    restorecon      /sys/devices/ddrfreq/devfreq/ddrfreq/max_freq
-    restorecon      /sys/devices/ddrfreq/devfreq/ddrfreq/available_frequencies
-    restorecon    /sys/class/timed_output/vibrator/vibrator_calib
-    restorecon      /sys/class/leds/torch/flash_thermal_protect
-    restorecon      /sys/class/hw_power/charger/charge_data/iin_thermal
-    restorecon      /sys/class/hw_power/charger/charge_data/ichg_thermal
-    restorecon       /sys/devices/amba.12/f7101000.i2c/i2c-1/1-001c/command
-    restorecon       /sys/devices/amba.13/f7101000.i2c/i2c-1/1-001c/command
-    restorecon       /sys/devices/f8000000.hisi_led/leds/blue/brightness
-    restorecon       /sys/devices/f8000000.hisi_led/leds/red/brightness
-    restorecon       /sys/devices/f8000000.hisi_led/leds/green/brightness
-    restorecon       /sys/devices/platform/balong_fb.1/leds/lcd_backlight0/brightness
-    restorecon       /sys/devices/virtual/leds/torch/brightness
-
 on post-fs-data
     mkdir /data/media 0770 media_rw media_rw
 
@@ -84,6 +60,20 @@ on post-fs-data
     mkdir /data/share 0775 sdcard_rw sdcard_rw
     chown sdcard_rw sdcard_rw /data/share
     mount sdcardfs /data/share /mnt/shell/emulated
+	
+	# Connectivity START
+	restorecon_recursive /data/memdump
+    restorecon_recursive /data/hwlogdir
+    restorecon_recursive /data/gnss
+    mkdir /data/misc/wifi 0770 wifi wifi
+    chown wifi wifi /data/misc/wifi
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    chown wifi wifi /data/misc/wifi/p2p_supplicant.conf
+    chmod 0660 /data/misc/wifi/p2p_supplicant.conf
+    chmod 0660 /data/misc/wifi/wpa_supplicant.conf
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcp
+	# Connectivity END
 
 on early-boot
     chown system system /dev/memory_throughput
@@ -106,11 +96,6 @@ on early-boot
     chmod 664 /sys/class/devfreq/gpufreq/available_frequencies
     chown system system /sys/class/devfreq/gpufreq/cur_freq
     chmod 664 /sys/class/devfreq/gpufreq/cur_freq
-
-    chmod 0660 /dev/tfa9895
-    chown media media /dev/tfa9895
-    chmod 0660 /dev/ear_pa
-    chown media media /dev/ear_pa
 	
 
 on init
@@ -145,16 +130,6 @@ on init
     chmod 777 /dev/spk_5vboost
     chown media media /dev/tfa9887
     chown media media /dev/ttyAMA1
-    chmod 0660 /dev/maxim_smartpa_dev
-    chown media media /dev/maxim_smartpa_dev
-    chmod 0660 /dev/speakerID
-    chown media media /dev/speakerID
-    chmod 0660 /dev/hi6402_hifi_misc
-    chown media media /dev/hi6402_hifi_misc
-    chmod 0660 /dev/ttyAMA0
-    chown media media /dev/ttyAMA0
-    chmod 0660 /dev/anc_hs
-    chown media media /dev/anc_hs
 
     chown system system /dev/log/switch
     chmod 0660 /dev/log/switch
@@ -167,24 +142,27 @@ on init
     fix_ext4 /sbin/e2fsck_s /dev/block/mmcblk0p11
     mount ext4 /dev/block/mmcblk0p11 /mnvm2:0 nosuid nodev noatime context=u:object_r:modem_nv_file:s0
 
-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
-    mkdir /mnt/media_rw/usbotg 0700 media_rw media_rw
-    mkdir /storage/sdcard1 0700 root root
-    mkdir /storage/usbotg 0700 root root
-
-     # Support legacy paths
-    symlink /storage/emulated/legacy /sdcard
-    symlink /storage/emulated/legacy /mnt/sdcard
-    symlink /storage/emulated/legacy /storage/sdcard0
-    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
-    symlink /storage/usbotg /usbotg
-    symlink /storage/usbotg /mnt/usbotg
-
     chmod 0774 /mnvm2:0
     chown root root /mnvm2:0
     write /proc/modem_depend 1
-
-    export SECONDARY_STORAGE /storage/sdcard1
+	
+    mkdir /sec_storage
+    mount ext4 /dev/block/platform/hi_mci.0/by-name/securetystorage /sec_storage nosuid nodev noatime wait crypt discard,auto_da_alloc,mblk_io_submit,data=journal,context=u:object_r:teecd_data_file:s0
+    chown root root /sec_storage
+    chmod 600 /sec_storage
+	
+	# Audio START
+	chmod 0660 /dev/maxim_smartpa_dev
+	chown media media /dev/maxim_smartpa_dev
+	chmod 0660 /dev/speakerID
+	chown media media /dev/speakerID
+	chmod 0660 /dev/hi6402_hifi_misc
+	chown media media /dev/hi6402_hifi_misc
+	chmod 0660 /dev/ttyAMA0
+	chown media media /dev/ttyAMA0
+	chmod 0660 /dev/anc_hs
+	chown media media /dev/anc_hs
+	# Audio END
 
 on post-fs
 
@@ -210,6 +188,8 @@ on post-fs
     restorecon_recursive /splash2
 	
 on boot
+
+
 
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=0755
 
@@ -338,25 +318,55 @@ on boot
     chown system system /sys/touchscreen/command
     chown system system /sys/touchscreen/response
     chown system system /sys/touchscreen/status
+	
+    chmod 0222 /sys/kernel/debug/tracing/trace_marker
+
+    chown root shell /sys/kernel/debug/tracing/trace_clock
+    chown root shell /sys/kernel/debug/tracing/buffer_size_kb
+    chown root shell /sys/kernel/debug/tracing/options/overwrite
+    chown root shell /sys/kernel/debug/tracing/options/print-tgid
+    chown root shell /sys/kernel/debug/tracing/events/sched/sched_switch/enable
+    chown root shell /sys/kernel/debug/tracing/events/sched/sched_wakeup/enable
+    chown root shell /sys/kernel/debug/tracing/events/power/cpu_frequency/enable
+    chown root shell /sys/kernel/debug/tracing/events/power/cpu_idle/enable
+    chown root shell /sys/kernel/debug/tracing/events/power/clock_set_rate/enable
+    chown root shell /sys/kernel/debug/tracing/events/cpufreq_interactive/enable
+    chown root shell /sys/kernel/debug/tracing/tracing_on
+
+    chmod 0664 /sys/kernel/debug/tracing/trace_clock
+    chmod 0664 /sys/kernel/debug/tracing/buffer_size_kb
+    chmod 0664 /sys/kernel/debug/tracing/options/overwrite
+    chmod 0664 /sys/kernel/debug/tracing/options/print-tgid
+    chmod 0664 /sys/kernel/debug/tracing/events/sched/sched_switch/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/sched/sched_wakeup/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/power/cpu_frequency/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/power/cpu_idle/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/power/clock_set_rate/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/cpufreq_interactive/enable
+    chmod 0664 /sys/kernel/debug/tracing/tracing_on
+
+    chown root shell /sys/kernel/debug/tracing/trace
+    chmod 0660 /sys/kernel/debug/tracing/trace
+
 
     write /proc/sys/kernel/hung_task_panic 1
     write /proc/sys/kernel/hung_task_timeout_secs 120
     write /sys/kernel/hungtask/monitorlist "whitelist,system_server,surfaceflinger"
     write /sys/kernel/hungtask/enable "on"
 
-    write /proc/sys/net/core/rps_sock_flow_entries 0
-    write /sys/class/net/rmnet0/queues/rx-0/rps_flow_cnt 0
-    write /sys/class/net/rmnet0/queues/rx-0/rps_cpus f
-    write /sys/class/net/rmnet1/queues/rx-0/rps_flow_cnt 0
-    write /sys/class/net/rmnet1/queues/rx-0/rps_cpus f
-    rite /sys/class/net/rmnet2/queues/rx-0/rps_flow_cnt 0
-    write /sys/class/net/rmnet2/queues/rx-0/rps_cpus f
-    write /sys/class/net/rmnet3/queues/rx-0/rps_flow_cnt 0
-    write /sys/class/net/rmnet3/queues/rx-0/rps_cpus f
-    write /sys/class/net/rmnet4/queues/rx-0/rps_flow_cnt 0
-    write /sys/class/net/rmnet4/queues/rx-0/rps_cpus f
-    write /sys/class/net/rmnet_ims/queues/rx-0/rps_flow_cnt 0
-    write /sys/class/net/rmnet_ims/queues/rx-0/rps_cpus f
+     write /proc/sys/net/core/rps_sock_flow_entries 0
+     write /sys/class/net/rmnet0/queues/rx-0/rps_flow_cnt 0
+     write /sys/class/net/rmnet0/queues/rx-0/rps_cpus f
+     write /sys/class/net/rmnet1/queues/rx-0/rps_flow_cnt 0
+     write /sys/class/net/rmnet1/queues/rx-0/rps_cpus f
+     write /sys/class/net/rmnet2/queues/rx-0/rps_flow_cnt 0
+     write /sys/class/net/rmnet2/queues/rx-0/rps_cpus f
+     write /sys/class/net/rmnet3/queues/rx-0/rps_flow_cnt 0
+     write /sys/class/net/rmnet3/queues/rx-0/rps_cpus f
+     write /sys/class/net/rmnet4/queues/rx-0/rps_flow_cnt 0
+     write /sys/class/net/rmnet4/queues/rx-0/rps_cpus f
+     write /sys/class/net/rmnet_ims/queues/rx-0/rps_flow_cnt 0
+     write /sys/class/net/rmnet_ims/queues/rx-0/rps_cpus f
 	 
     write /sys/block/zram0/disksize 268435456
     swapon_all fstab.hi6210sft
@@ -372,7 +382,166 @@ service kerneldump /system/etc/kerneldump.sh
     user root
     group system
     oneshot
-    
+	
+# Connectivity START
+service netd /system/bin/netd
+    class main 
+    socket netd stream 0660 root system
+    socket dnsproxyd stream 0660 root inet 
+    socket mdns stream 0660 root system
+
+service hi110x_ecpt /system/bin/hi110x_except_logd -wbg -p /data/hwlogdir/exception/ -n 30 -c
+    class late_start
+    user system
+    group system root
+    disabled
+
+service hi110x_logd /system/bin/hi110x_logd
+    class late_start
+    user system
+    group system root media_rw
+    disabled
+
+service chr_logd /system/bin/chr_logd
+    class late_start
+    user system
+    group system root bluetooth wifi
+    disabled
+
+service octty /system/bin/octty
+    class late_start
+    user system
+    group system bluetooth root media
+    disabled
+
+service oam_app /system/bin/oam_app
+    class late_start
+    user system
+    group system root wifi bluetooth
+    disabled
+    oneshot
+
+service hisi_bfg /system/bin/hisi_connectivity.sh
+    class late_start
+    user root
+    group system
+    oneshot
+
+on property:init.svc.hisi_bfg=stopped
+    write /proc/wifi_enable/wifi_start 1
+    write /proc/oam_enable/oam_start 1
+    start octty
+    start oam_app
+    start chr_logd
+    start hsgnss
+    start agnsscontrol
+    start agnsslog
+    start supl20clientd
+    start watchlssd
+    start hi110x_logd
+    start hi110x_ecpt
+
+service wpa_supplicant /system/bin/wpa_supplicant_hisi \
+    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
+    -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+service p2p_supplicant /system/bin/wpa_supplicant_hisi \
+    -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
+    -O/data/misc/wifi/sockets -N \
+		-ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1 -g@android:wpa_wlan0
+    class main
+    socket wpa_wlan0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+service hostapd_bin /system/bin/hostapd_hisi -d /data/misc/wifi/hostapd_hisi.conf
+		socket wpa_wlan0 dgram 660 wifi wifi
+    class main
+    disabled
+    oneshot
+service dhcpcd_wlan0 /system/bin/dhcpcd -BKL
+    class main
+    disabled
+    oneshot
+
+service dhcpcd_p2p /system/bin/dhcpcd -aABKL
+    class main
+    disabled
+    oneshot
+
+service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
+
+service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
+
+service iprenew_wlan0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+service iprenew_p2p /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+service iprenew_bnep0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+
+service hsgnss /system/bin/gnss_engine -normal
+    class late_start
+    user system
+    group system inet root
+    disabled
+
+service agnsscontrol /system/bin/agnsscontrol -normal
+    class late_start
+    user system
+    group system inet root
+    disabled
+
+service supl20clientd /system/bin/supl20clientd
+    class late_start
+    user system
+    group system inet
+    disabled
+
+service agnsslog /system/bin/agnsslog
+    class late_start
+    user system
+    group system inet root
+    disabled
+
+service watchlssd /system/xbin/watchlssd
+    class late_start
+    user system
+    group system inet net_raw
+    disabled
+
+on property:bluetooth.log.file.create=true
+   mkdir /data/hwzd_logs/bt
+   chown bluetooth bluetooth /data/hwzd_logs/bt
+   chmod 775 /data/hwzd_logs/bt
+
+   setprop bluetooth.log.file.create false
+
+service macaddr /system/bin/mac_addr_normalization
+    class core
+    user root
+    group root bluetooth net_bt_stack wifi
+    oneshot
+# Connectivity END
+
 service ccorecat /system/bin/dmesgcat -i /dev/log/ccore -e s -r 4096 -z 2 -n 5 -f /data/hisi_logs/cp_log/coredump/ccorecat-log
     class late_start
     user root
@@ -396,26 +565,23 @@ service akmd09911 /system/bin/akmd09911
     class main
     user system
     group system
-
-service healthd /sbin/healthd
+	
+service teecd /sbin/teecd
+    socket tee-multi-user stream 660 root system
     class core
-    critical
-    seclabel u:r:healthd:s0
-    group root system
-
-service hdmi-daemon /system/bin/hdmi_daemon
-    class main
-    group system
-    socket hdmi_daemon stream 660 root system graphics
-    disabled
-
-service charger /sbin/healthd -p
-    class charger
-    critical
-    seclabel u:r:healthd:s0
+    user root
+    group root
+    seclabel u:r:tee:s0
 
 on property:service.bootanim.exit=1	
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor optdemand
 
+on property:ro.runmode=factory	
+    chown system system /proc/balong/ddr_test/hisi_dt_on
+    chown system system /proc/balong/ddr_test/hisi_dt_off
+
 on late-init
    rmdir /dev/cpuctl/top_visible
+   
+on post-fs-data
+    setprop vold.post_fs_data_done 1
