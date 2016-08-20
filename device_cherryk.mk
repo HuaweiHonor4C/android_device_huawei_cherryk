@@ -133,19 +133,19 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=HuaweiRIL
 
 # Audio Packages
-PRODUCT_PACKAGES += \
-    audio.primary.default \
-    audio_policy.stub \
-    audio.a2dp.default \
-    audio.usb.default \
-    audio.r_submix.default \
-    sound_trigger.primary.hi6210sft \
-    libaudioutils \
-    libtinyalsa \
-    tinyplay \
-    tinycap \
-    tinymix \
-    tinypcminfo
+#PRODUCT_PACKAGES += \
+#    audio.primary.default \
+#    audio_policy.stub \
+#   audio.a2dp.default \
+#   audio.usb.default \
+#    audio.r_submix.default \
+#    sound_trigger.primary.hi6210sft \
+#   libaudioutils \
+#    libtinyalsa \
+#    tinyplay \
+#    tinycap \
+#    tinymix \
+#   tinypcminfo
 
 # Set zygote config
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.zygote=zygote64_32
@@ -195,9 +195,9 @@ $(call inherit-product, $(LOCAL_PATH)/selinux/selinux_cherryk.mk)
 
 
 # Audio Configurations
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/audio/audio_effects.conf:system/etc/audio_effects.conf \
-	$(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf
+#PRODUCT_COPY_FILES += \
+#	$(LOCAL_PATH)/audio/audio_effects.conf:system/etc/audio_effects.conf \
+#	$(LOCAL_PATH)/audio/audio_policy.conf:system/etc/audio_policy.conf
 
 # Media Profiles (Patched)
 PRODUCT_COPY_FILES += \
