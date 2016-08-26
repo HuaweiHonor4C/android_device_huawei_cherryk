@@ -17,15 +17,11 @@
 # Inherit from these products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# Inherit from the common Open Source product configuration
+# It's 64-bit product
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
 # Inherit some common CM stuff
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
-
-# Inherit Languages Support
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # Release Name
 PRODUCT_RELEASE_NAME := cherryk
@@ -43,7 +39,7 @@ PRODUCT_PACKAGES += \
 # Device Identifiers
 PRODUCT_DEVICE := cherryk
 PRODUCT_NAME := cm_cherryk
-PRODUCT_BRAND := Android
+PRODUCT_BRAND := Honor
 PRODUCT_MODEL := cherryk
 PRODUCT_MANUFACTURER := Huawei
 
