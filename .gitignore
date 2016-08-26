@@ -1,0 +1,5 @@
+# Apple OS X desktop service store files
+*.DS_Store
+# buckup files
+*~
+*.bak
